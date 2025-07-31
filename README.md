@@ -1,5 +1,4 @@
 # GoogleMapsScraper
-
 Author: Nicolas de Grandchant
 
 This is a full-featured Python pipeline that scrapes business listings from Google Maps by combining shapefile-based geography, keyword-based searches, and parallelized scraping with Selenium. It outputs clean CSV files for analysis.
@@ -7,7 +6,8 @@ This is a full-featured Python pipeline that scrapes business listings from Goog
 Designed for grid-based, region-specific business discovery in Latin America — optimized for quality, retries, and modular post-processing.
 
 ## How to use:
-run python3 Main.py
+Run:
+python3 Main.py
 
 You will be prompted a few times, but mainly to:
 
@@ -29,45 +29,38 @@ This script will:
 - Retry failed jobs if any
 - Extract and save amenities to a separate CSV
 
-
-
-
-
 ## Structure:
-
-Load and clean department names from shapefiles (CleanDep.py)
+CleanDep.py
 - Loads a shapefile and applies normalization + human-cleaned department name mappings. Saves a cleaned shapefile.
 
-Create evenly spaced geographic coordinate grids inside selected departments (Departamento.py)
+Departamento.py
 - Generates a latitude/longitude grid from a shapefile for a selected department.
 
-Export coordinate grids to CSV (Gridexporter.py)
+Gridexporter.py
 - Exports coordinate grid points to CSV format.
 
+GoogleMapsScraper.py
+- Core scraping logic. Loads grid, builds jobs, runs Selenium ChromeDriver, and extracts business listings with BeautifulSoup.
+- Supports parallel scraping using Selenium and BeautifulSoup.
 
-Generate scraping jobs per coordinate and keyword (GoogleMapsScraper.py)
-- Core scraping logic. Loads grid, builds jobs, runs Selenium ChromeDriver, and extracts business listings with BeautifulSoup
-- Parallel scraping using Selenium and BeautifulSoup
-
-Holds the elements location (ItemTemplate.py)
+ItemTemplate.py
 - Defines the field parsing logic for Google Maps cards (e.g., name, link, rating, price, amenities).
 
-Error logging and retry logic for failed jobs (Retry.py)
+Retry.py
 - Reloads failed jobs and retries them, then merges the results.
 
-Modular result processing, amenity parsing, and ID tagging (Processor.py)
-- 	Cleans and processes the scraped CSV: deduplication, amenity extraction, and field reformatting.
+Processor.py
+- Cleans and processes the scraped CSV: deduplication, amenity extraction, and field reformatting.
 
 ## Parameters
-
 GLOBAL VARIABLES
-- SCROLL_MAX:	Max number of page-down scrolls per search job:	int	50
-- WAIT_TIMEOUT:	Seconds to wait for search results to appear:	int	20
-- NUM_PROCESSES:	Number of parallel scraping processes	int:	3
-- SCROLL_INTERVAL:	Delay between scroll actions:	float	0.8
-- SCROLL_TIMEOUT:	How long to wait before assuming scrolling has stalled:	int	4
-- KEYWORDS:	List of search terms used for scraping:	list,	16 strings, in Main.py
-- CLEAN_NAMES:	Mapping of incorrect → correct department names: dict, in Main.py
+- SCROLL_MAX: Max number of page-down scrolls per search job: int, default = 50
+- WAIT_TIMEOUT: Seconds to wait for search results to appear: int, default = 20
+- NUM_PROCESSES: Number of parallel scraping processes: int, default = 3
+- SCROLL_INTERVAL: Delay between scroll actions: float, default = 0.8
+- SCROLL_TIMEOUT: How long to wait before assuming scrolling has stalled: int, default = 4
+- KEYWORDS: List of search terms used for scraping: list of 16 strings, defined in Main.py
+- CLEAN_NAMES: Mapping of incorrect → correct department names: dict, defined in Main.py
 
 clean_department_names() in CleanDep.py
 - shapefile_path = Path to input .shp file,	str,	default = User input
@@ -103,4 +96,30 @@ retry_and_merge() in Retry.py
 
 process_scraped_csv() in Processor.py
 - filename =	Path to CSV file to clean and reformat,	str, default = User-defined
+
+## Dependencies
+Install everything with:
+pip install -r requirements.txt
+
+Contents of requirements.txt
+  pandas
+  geopandas
+  shapely
+  numpy
+  selenium
+  beautifulsoup4
+
+## Output Files
+results_<CITY>.csv: Final scraped business listings
+
+results_<CITY>_amenities.csv: Amenities (exploded)
+
+<CITY>_grid.csv: Latitude/longitude grid used
+
+all_jobs_<CITY>.csv: All jobs attempted
+
+jobs_failed_<CITY>.csv: Failed jobs (used for retry)
+
+samples of output are also included
+
 
