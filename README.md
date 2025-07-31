@@ -100,7 +100,7 @@ process_scraped_csv() in Processor.py
 Install everything with:
 pip install -r requirements.txt
 
-Contents of requirements.txt
+Contents of requirements.txt:
   pandas
   geopandas
   shapely
