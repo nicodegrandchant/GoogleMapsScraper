@@ -58,13 +58,13 @@ Modular result processing, amenity parsing, and ID tagging (Processor.py)
 ## Parameters
 
 GLOBAL VARIABLES
-SCROLL_MAX:	Max number of page-down scrolls per search job:	int	50
-WAIT_TIMEOUT:	Seconds to wait for search results to appear:	int	20
-NUM_PROCESSES:	Number of parallel scraping processes	int:	3
-SCROLL_INTERVAL:	Delay between scroll actions:	float	0.8
-SCROLL_TIMEOUT:	How long to wait before assuming scrolling has stalled:	int	4
-KEYWORDS:	List of search terms used for scraping:	list,	16 strings, in Main.py
-CLEAN_NAMES:	Mapping of incorrect → correct department names: dict, in Main.py
+- SCROLL_MAX:	Max number of page-down scrolls per search job:	int	50
+- WAIT_TIMEOUT:	Seconds to wait for search results to appear:	int	20
+- NUM_PROCESSES:	Number of parallel scraping processes	int:	3
+- SCROLL_INTERVAL:	Delay between scroll actions:	float	0.8
+- SCROLL_TIMEOUT:	How long to wait before assuming scrolling has stalled:	int	4
+- KEYWORDS:	List of search terms used for scraping:	list,	16 strings, in Main.py
+- CLEAN_NAMES:	Mapping of incorrect → correct department names: dict, in Main.py
 
 clean_department_names() in CleanDep.py
 - shapefile_path = Path to input .shp file,	str,	default = User input
