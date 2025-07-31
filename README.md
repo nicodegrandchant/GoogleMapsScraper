@@ -12,7 +12,7 @@ You will be prompted a few times, but mainly to:
 
 1. Input the path to a .shp shapefile (default: Departamentos.shp)
 2. Prompted whether or not you want to clean a column and will be prompted to input a column name to clean after being give the lisf of columns
-3.Specify a radius (default: 1000 meters)
+3. Specify a radius (default: 1000 meters)
 4. Choose whether to pick the department to by name or code
 5. Input the name or code of the department depending on what you chose
 6. If the file for the grid exists, whether you want to override it or not
