@@ -1,4 +1,7 @@
 # GoogleMapsScraper
+
+Author: Nicolas de Grandchant
+
 This is a full-featured Python pipeline that scrapes business listings from Google Maps by combining shapefile-based geography, keyword-based searches, and parallelized scraping with Selenium. It outputs clean CSV files for analysis.
 
 Designed for grid-based, region-specific business discovery in Latin America — optimized for quality, retries, and modular post-processing.
@@ -100,6 +103,4 @@ retry_and_merge() in Retry.py
 
 process_scraped_csv() in Processor.py
 - filename =	Path to CSV file to clean and reformat,	str, default = User-defined
-
-
 
