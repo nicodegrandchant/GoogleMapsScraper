@@ -1,1 +1,6 @@
-
+pandas
+geopandas
+shapely
+numpy
+selenium
+beautifulsoup4
