@@ -1,5 +1,4 @@
 # GoogleMapsScraper
-Author: Nicolas de Grandchant
 
 This is a full-featured Python pipeline that scrapes business listings from Google Maps by combining shapefile-based geography, keyword-based searches, and parallelized scraping with Selenium. It outputs clean CSV files for analysis.
 
@@ -118,8 +117,9 @@ results_<CITY>_amenities.csv: Amenities (exploded)
 
 all_jobs_<CITY>.csv: All jobs attempted
 
-jobs_failed_<CITY>.csv: Failed jobs (used for retry)
+jobs_failed_<CITY>.csv: Failed jobs (used for retry, exists only if fails occur)
 
-samples of output are also included
+samples of output for the first four are also included since the jobs_failed and all_jobs docs follow the same structure.
 
-
+Author:
+Nicolas de Grandchanthttps://github.com/nicodegrandchant
